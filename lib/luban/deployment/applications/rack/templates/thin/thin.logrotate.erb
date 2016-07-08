@@ -1,0 +1,14 @@
+# Thin logrotate configuration
+
+<%= log_path.join('thin*.log') %> {
+  daily
+  missingok
+  rotate 14
+  compress
+  dateext
+  notifempty
+  sharedscripts
+  postrotate
+    pgrep -f "<%= process_pattern %>" >/dev/null 2>&1 || pkill -USR1 -f "<%= process_pattern %>" >/dev/null 2>&1 || true
+  endscript
+}

@@ -1,0 +1,27 @@
+---
+# Server options
+# address: 0.0.0.0
+# port: 3000
+# socket: <%= socket_file_path %>
+chdir: <%= release_path %>
+
+# Adapter options
+environment: <%= stage %>
+
+# Daemon options
+daemonize: true
+log: <%= log_file_path %>
+pid: <%= pid_file_path %>
+tag: <%= "#{env_name}:#{release_tag}" %>
+
+# Cluster options
+servers: 4
+wait: 30
+
+# Tuning options
+# timeout: 30
+# max_conns: 1024
+# max_persistent_conns: 100
+
+# Common options
+# trace: true
