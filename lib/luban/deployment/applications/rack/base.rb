@@ -11,17 +11,21 @@ module Luban
 
           parameter :web_server
 
+          def power_by(server, **opts)
+            web_server name: server, opts: opts
+          end
+
           protected
 
           def set_default_rack_parameters
-            set_default :web_server, DefaultWebServer
+            set_default :web_server, name: DefaultWebServer, opts: {}
           end
         end
 
         include Parameters
 
         def default_templates_path
-          @default_templates_path ||= super(__FILE__).join(web_server.to_s)
+          @default_templates_path ||= super(__FILE__).join(web_server[:name].to_s)
         end
 
         dispatch_task :phased_restart_process, to: :controller
