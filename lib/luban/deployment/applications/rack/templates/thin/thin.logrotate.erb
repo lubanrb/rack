@@ -1,6 +1,6 @@
 # Thin logrotate configuration
 
-<%= log_path.join('thin*.log') %> {
+<%= log_path.join('thin.*.log') %> {
   daily
   missingok
   rotate 14
