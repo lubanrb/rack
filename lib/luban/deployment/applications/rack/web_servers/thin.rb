@@ -9,7 +9,7 @@ module Luban
                 @default_web_server_options ||= {
                   # Server options
                   address: "0.0.0.0",
-                  port: 3000,
+                  port: port + 1,
                   socket: socket_file_path.to_s,
                   chdir: release_path.to_s,
                   # Adapter options
