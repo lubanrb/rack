@@ -18,7 +18,6 @@ module Luban
           def load_web_server
             require web_server_require_path
             singleton_class.send(:prepend, web_server_module(web_server_require_path))
-            set_default_web_server_options
           rescue LoadError => e
             abort "Aborted! Failed to load web server #{web_server[:name].inspect}."
           end

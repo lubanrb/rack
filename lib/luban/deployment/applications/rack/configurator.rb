@@ -9,6 +9,11 @@ module Luban
 
           protected
 
+          def init
+            super
+            set_default_web_server_options unless task.opts.release.nil?
+          end
+
           def web_server_module(path)
             @web_server_module ||= super.const_get('Common')
           end

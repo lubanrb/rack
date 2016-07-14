@@ -33,6 +33,11 @@ module Luban
 
           protected
 
+          def init
+            super
+            set_default_web_server_options
+          end
+
           def restart_process!
             capture("#{restart_command} 2>&1")
           end
