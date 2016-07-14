@@ -5,10 +5,14 @@ module Luban
         using Luban::CLI::CoreRefinements
 
         module Parameters
-          extend Luban::Deployment::Parameters::Base
+          extend Luban::Deployment::Parameters::Base  
 
+          DefaultPort = 3000
+          DefaultVirtualHost = 'localhost'
           DefaultWebServer = :thin
 
+          parameter :port
+          parameter :virtual_host
           parameter :web_server
 
           def power_by(server, **opts)
@@ -18,6 +22,8 @@ module Luban
           protected
 
           def set_default_rack_parameters
+            set_default :port, DefaultPort
+            set_default :virtual_host, DefaultVirtualHost
             set_default :web_server, name: DefaultWebServer, opts: {}
           end
         end

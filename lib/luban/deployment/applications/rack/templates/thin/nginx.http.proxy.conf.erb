@@ -1,0 +1,45 @@
+# Nginx reverse proxy configuration for Thin
+
+<% opts = web_server[:opts] -%>
+upstream <%= service_entry %> {
+    # fail_timeout=0 means we always retry an upstream even if it failed
+    # to return a good HTTP response 
+
+    <%- if opts[:port] -%>
+    <%- opts[:servers].times do |n| -%>
+    server <%= opts[:address] %>:<%= opts[:port] + n %> fail_timeout=0;
+    <%- end -%>
+    <%- end -%>
+    <%- if opts[:socket] -%>
+    <%- opts[:servers].times do |n| -%>
+    server unix:<%= socket_file_path(n) %> fail_timeout=0;
+    <%- end -%>
+    <%- end -%>
+}
+
+server {
+    listen <%= port %>;
+    server_name <%= virtual_host %>;
+
+    # ~2 seconds is often enough for most cases to parse HTML/CSS and
+    # retrieve needed images/icons/frames, connections are cheap in
+    # nginx so increasing this is generally safe...
+    keepalive_timeout 5;
+
+    # path for static files
+    root <%= current_app_path %>/public;
+
+    location ~ ^/assets/ {
+        gzip_static on; # to serve pre-gizpped version
+        expires 1y;
+        add_header Cache-Control public;
+        add_header ETag "";
+        break;
+    }
+
+    try_files $uri/index.html $uri.html $uri @app;
+
+    location @app {
+      proxy_pass http://<%= service_entry %>;
+    }
+}
