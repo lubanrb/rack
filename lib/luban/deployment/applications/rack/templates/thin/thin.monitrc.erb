@@ -10,7 +10,7 @@ check process <%= service_entry %>.<%= web_server[:name] %>.<%= n %>
   stop program = "/bin/bash -c '<%= stop_command %> -o <%=n %>'"
   if totalmem is greater than 150.0 MB for 40 cycles then alert
   <%- if opts[:port] -%>
-  if failed port <%= opts[:port].to_i + n %> for 4 times within 8 cycles then restart
+  if failed port <%= opts[:port] + n %> for 4 times within 8 cycles then restart
   <%- end -%>
   <%- if opts[:socket] -%>
   if failed unixsocket <%= socket_file_path(n) %> for 4 times within 8 cycles then restart
