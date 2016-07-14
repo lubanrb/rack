@@ -43,12 +43,21 @@ module Luban
             @sockets_path ||= shared_path.join('sockets')
           end
 
-          def socket_file_path
-            @socket_file_path ||= sockets_path.join(socket_file_name)
+          def socket_file_path(n = nil)
+            if n.nil?
+              @socket_file_path ||= sockets_path.join(socket_file_name)
+            else
+              sockets_path.join(socket_file_name(n))
+            end
           end
 
-          def socket_file_name
-            @socket_file_name ||= "#{web_server[:name]}.sock"
+          def socket_file_name(n = nil)
+            if n.nil?
+              @socket_file_name ||= "#{web_server[:name]}.sock"
+            else
+              "#{web_server[:name]}.#{n}.sock"
+            end
+
           end
 
           def ruby_bin_path
