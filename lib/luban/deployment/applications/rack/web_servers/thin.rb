@@ -48,7 +48,7 @@ module Luban
               end
 
               def process_pattern
-                @process_pattern ||= "^thin server.+\\[#{Regexp.escape(env_name)}:#{Regexp.escape(application_version)}-[0-9a-f]+\\]"
+                @process_pattern ||= "^thin server.+\\[#{Regexp.escape(env_name)}:.*\\]"
               end
 
               protected
