@@ -12,7 +12,6 @@ module Luban
                   port: port + 1,
                   socket: socket_file_path.to_s,
                   chdir: release_path.to_s,
-                  # Adapter options
                   environment: stage,
                   # Daemon options
                   daemonize: true,
@@ -20,7 +19,7 @@ module Luban
                   pid: pid_file_path.to_s,
                   tag: "#{env_name}:#{release_tag}",
                   # Cluster options
-                  servers: 4,
+                  servers: 2,
                   wait: 30,
                   # Tuning options
                   timeout: 30,
