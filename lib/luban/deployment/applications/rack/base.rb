@@ -31,7 +31,7 @@ module Luban
         include Parameters
 
         def default_templates_path
-          @default_templates_path ||= super(__FILE__).join(web_server[:name].to_s)
+          @default_templates_path ||= base_templates_path(__FILE__).join(web_server[:name].to_s)
         end
 
         dispatch_task :phased_restart_process, to: :controller
