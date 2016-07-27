@@ -34,7 +34,7 @@ module Luban
           @default_templates_path ||= base_templates_path(__FILE__).join(web_server[:name].to_s)
         end
 
-        dispatch_task :phased_restart_process, to: :controller
+        application_action "phased_restart_process", dispatch_to: :controller
 
         protected
 
