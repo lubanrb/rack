@@ -7,24 +7,8 @@ module Luban
             @log_file_name ||= "#{web_server[:name]}.log"
           end
 
-          def pid_file_path(n = nil)
-            if n.nil?
-              @pid_file_path ||= pids_path.join(pid_file_name)
-            else
-              pids_path.join(pid_file_name(n))
-            end
-          end
-
-          def pid_file_name(n = nil)
-            if n.nil?
-              @pid_file_name ||= "#{web_server[:name]}.pid"
-            else
-              "#{web_server[:name]}.#{n + web_server[:opts][:port].to_i}.pid"
-            end
-          end
-
-          def pid_file_pattern
-            @pid_file_pattern ||= "#{web_server[:name]}.*.pid"
+          def pid_file_name
+            @pid_file_name ||= "#{web_server[:name]}.pid"
           end
 
           def control_file_name
@@ -39,25 +23,16 @@ module Luban
             @logrotate_file_name ||= "#{web_server[:name]}.logrotate"
           end
 
+          def socket_file_path
+            @socket_file_path ||= sockets_path.join(socket_file_name)
+          end
+
           def sockets_path
             @sockets_path ||= shared_path.join('sockets')
           end
 
-          def socket_file_path(n = nil)
-            if n.nil?
-              @socket_file_path ||= sockets_path.join(socket_file_name)
-            else
-              sockets_path.join(socket_file_name(n))
-            end
-          end
-
-          def socket_file_name(n = nil)
-            if n.nil?
-              @socket_file_name ||= "#{web_server[:name]}.sock"
-            else
-              "#{web_server[:name]}.#{n}.sock"
-            end
-
+          def socket_file_name
+            @socket_file_name ||= "#{web_server[:name]}.sock"
           end
 
           def ruby_bin_path

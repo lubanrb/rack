@@ -4,7 +4,87 @@ module Luban
       class Rack
         module WebServers
           module Thin
+            module Cluster
+              def pid_file_pattern
+                @pid_file_pattern ||= "#{web_server[:name]}.*.pid"
+              end
+
+              def pid_files_path
+                pids_path.join(pid_file_pattern)
+              end
+
+              def pid_files
+                capture(:ls, "-A #{pid_files_path} 2>/dev/null").split.map do |f|
+                  Pathname.new(f)
+                end
+              end
+
+              def pids
+                pid_files.collect { |pid_file| capture(:cat, "#{pid_file} 2>/dev/null") }
+              end
+
+              def pid; pids; end
+
+              def pid_file_exists?
+                # Any pid file is NOT zero size
+                pid_files.any? { |pid_file| file?(pid_file, "-s") }
+              end
+
+              def remove_orphaned_pid_file
+                rm(pid_files_path) if pid_file_orphaned?
+              end
+
+              def monitor_command
+                @monitor_command ||= "#{monitor_executable} monitor -g #{service_entry}"
+              end
+
+              def unmonitor_command
+                @unmonitor_command ||= "#{monitor_executable} unmonitor -g #{service_entry}"
+              end
+            end
+
+            module Paths
+              def pid_file_path(n = nil)
+                if n.nil?
+                  @pid_file_path ||= pids_path.join(pid_file_name)
+                else
+                  pids_path.join(pid_file_name(n))
+                end
+              end
+
+              def pid_file_name(n = nil)
+                if n.nil?
+                  @pid_file_name ||= "#{web_server[:name]}.pid"
+                else
+                  "#{web_server[:name]}.#{n + web_server[:opts][:port].to_i}.pid"
+                end
+              end
+
+              def control_file_extname
+                @control_file_extname ||= "yml"
+              end
+
+              def socket_file_path(n = nil)
+                if n.nil?
+                  @socket_file_path ||= sockets_path.join(socket_file_name)
+                else
+                  sockets_path.join(socket_file_name(n))
+                end
+              end
+
+              def socket_file_name(n = nil)
+                if n.nil?
+                  @socket_file_name ||= "#{web_server[:name]}.sock"
+                else
+                  "#{web_server[:name]}.#{n}.sock"
+                end
+              end
+            end
+
             module Common
+              include Cluster
+              include Paths
+
               def default_web_server_options
                 @default_web_server_options ||= {
                   # Server options
@@ -28,10 +108,6 @@ module Luban
                   # Common options
                   trace: true
                 }
-              end
-
-              def control_file_extname
-                @control_file_extname ||= "yml"
               end
 
               def thin_command
@@ -63,7 +139,8 @@ module Luban
                 end
               end
             end
-
+            
+            #include Luban::Deployment::Service::Controller::Cluster
             include Common
 
             def restart_command
