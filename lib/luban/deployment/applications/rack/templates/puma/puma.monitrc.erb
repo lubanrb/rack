@@ -1,0 +1,17 @@
+# Monit configuration for Puma
+
+<% opts = web_server[:opts] -%>
+check process <%= service_entry %>
+  with pidfile <%= pid_file_path %>
+  onreboot laststate
+  start program = "/bin/bash -c 'sleep 1; <%= start_command %>'"
+  stop program = "/bin/bash -c '<%= stop_command %>'"
+  if totalmem is greater than 150.0 MB for 40 cycles then alert
+  <%- if tcp_socket? -%>
+  if failed port <%= opts[:port] %> for 4 times within 8 cycles then restart
+  <%- end -%>
+  <%- if unix_socket? -%>
+  if failed unixsocket <%= socket_file_path %> for 4 times within 8 cycles then restart
+  <%- end -%>
+  if cpu is greater than 80% for 20 cycles then alert
+  if loadavg(5min) greater than 10 for 40 cycles then alert

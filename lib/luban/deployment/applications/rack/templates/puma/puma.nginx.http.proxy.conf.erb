@@ -1,0 +1,41 @@
+# Nginx reverse proxy configuration for Puma
+
+<% opts = web_server[:opts] -%>
+upstream <%= service_entry %> {
+    # fail_timeout=0 means we always retry an upstream even if it failed
+    # to return a good HTTP response 
+
+    <%- if tcp_socket? -%>
+    server <%= opts[:address] %>:<%= opts[:port] %> fail_timeout=0;
+    <%- end -%>
+    <%- if unix_socket? -%>
+    server unix:<%= socket_file_path %> fail_timeout=0;
+    <%- end -%>
+}
+
+server {
+    listen <%= port %>;
+    server_name <%= virtual_host %>;
+
+    # ~2 seconds is often enough for most cases to parse HTML/CSS and
+    # retrieve needed images/icons/frames, connections are cheap in
+    # nginx so increasing this is generally safe...
+    keepalive_timeout 5;
+
+    # path for static files
+    root <%= public_files_path %>;
+
+    location ~ ^/assets/ {
+        gzip_static on; # to serve pre-gizpped version
+        expires 1y;
+        add_header Cache-Control public;
+        add_header ETag "";
+        break;
+    }
+
+    try_files $uri/index.html $uri.html $uri @app;
+
+    location @app {
+      proxy_pass http://<%= service_entry %>;
+    }
+}
