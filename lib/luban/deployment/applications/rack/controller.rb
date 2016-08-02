@@ -34,7 +34,7 @@ module Luban
 
           def init
             super
-            set_default_web_server_options
+            set_web_server_options
           end
 
           def restart_process!
