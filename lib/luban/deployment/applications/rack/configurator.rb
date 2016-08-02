@@ -7,11 +7,15 @@ module Luban
           include Parameters
           include WebServer
 
+          def exclude_template?(template)
+            web_servers_unused.any? { |w| template =~ /^#{w}\./ }
+          end
+
           protected
 
           def init
             super
-            set_default_web_server_options unless task.opts.release.nil?
+            set_web_server_options unless task.opts.release.nil?
           end
 
           def web_server_module(path)
