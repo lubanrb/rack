@@ -5,12 +5,12 @@ upstream <%= service_entry %> {
     # fail_timeout=0 means we always retry an upstream even if it failed
     # to return a good HTTP response 
 
-    <%- if opts[:port] -%>
+    <%- if tcp_socket? -%>
     <%- opts[:servers].times do |n| -%>
     server <%= opts[:address] %>:<%= opts[:port] + n %> fail_timeout=0;
     <%- end -%>
     <%- end -%>
-    <%- if opts[:socket] -%>
+    <%- if unix_socket? -%>
     <%- opts[:servers].times do |n| -%>
     server unix:<%= socket_file_path(n) %> fail_timeout=0;
     <%- end -%>
@@ -27,7 +27,7 @@ server {
     keepalive_timeout 5;
 
     # path for static files
-    root <%= current_app_path %>/public;
+    root <%= public_files_path %>;
 
     location ~ ^/assets/ {
         gzip_static on; # to serve pre-gizpped version

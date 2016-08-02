@@ -6,7 +6,7 @@ module Luban
           module Thin
             module Cluster
               def pid_file_pattern
-                @pid_file_pattern ||= "#{web_server[:name]}.*.pid"
+                @pid_file_pattern ||= "#{current_web_server}.*.pid"
               end
 
               def pid_files_path
@@ -54,9 +54,9 @@ module Luban
 
               def pid_file_name(n = nil)
                 if n.nil?
-                  @pid_file_name ||= "#{web_server[:name]}.pid"
+                  @pid_file_name ||= "#{current_web_server}.pid"
                 else
-                  "#{web_server[:name]}.#{n + web_server[:opts][:port].to_i}.pid"
+                  "#{current_web_server}.#{n + web_server[:opts][:port].to_i}.pid"
                 end
               end
 
@@ -74,9 +74,9 @@ module Luban
 
               def socket_file_name(n = nil)
                 if n.nil?
-                  @socket_file_name ||= "#{web_server[:name]}.sock"
+                  @socket_file_name ||= "#{current_web_server}.sock"
                 else
-                  "#{web_server[:name]}.#{n}.sock"
+                  "#{current_web_server}.#{n}.sock"
                 end
               end
             end
@@ -110,6 +110,9 @@ module Luban
                 }
               end
 
+              def tcp_socket?; @tcp_socket; end
+              def unix_socket?; @unix_socket; end
+
               def thin_command
                 @thin_command ||= "#{bundle_executable} exec thin -C #{control_file_path}"
               end
@@ -128,9 +131,11 @@ module Luban
 
               protected
 
-              def set_default_web_server_options
+              def set_web_server_options
                 super.tap do |opts|
-                  if opts.delete(:unix_socket)
+                  @unix_socket = !!opts.delete(:unix_socket)
+                  @tcp_socket = !@unix_socket
+                  if unix_socket?
                     opts.delete(:address)
                     opts.delete(:port)
                   else
@@ -140,7 +145,6 @@ module Luban
               end
             end
             
-            #include Luban::Deployment::Service::Controller::Cluster
             include Common
 
             def restart_command
