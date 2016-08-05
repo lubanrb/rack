@@ -30,10 +30,6 @@ module Luban
 
         include Parameters
 
-        def default_templates_path
-          @default_templates_path ||= base_templates_path(__FILE__).join(web_server[:name].to_s)
-        end
-
         application_action "phased_restart_process", dispatch_to: :controller
 
         protected
@@ -42,6 +38,10 @@ module Luban
           super
           linked_dirs.push('sockets')
           set_default_rack_parameters
+        end
+
+        def include_default_templates_path
+          default_templates_paths.unshift(base_templates_path(__FILE__).join(web_server[:name].to_s))
         end
 
         def setup_control_tasks
