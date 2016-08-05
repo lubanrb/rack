@@ -1,5 +1,11 @@
 # Change log
 
+## Version 0.2.1 (Aug 05, 2016)
+
+Bug fixes:
+  * Changed mechanism for adding default templates path in order to handle templates paths inheritance
+    * As a result, updated gem dependency on Luban to version 0.6.8
+
 ## Version 0.2.0 (Aug 02, 2016)
 
 New features:
@@ -19,8 +25,6 @@ Minor enhancements:
   * Added convenient methods, #tcp_socket? and #unix_socket?, to properly determine whether tcp or unix socket is being specified
   * Rename #set_default_web_server_options to #set_web_server_options for better clarity
   * Minor code cleanup
-
-
 
 Bug fixes:
   * Refactored #default_templates_path to fix an inheritance issue
