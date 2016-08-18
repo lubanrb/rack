@@ -1,5 +1,11 @@
 # Change log
 
+## Version 0.2.2 (Aug 18, 2016)
+
+Minor enhancments:
+  * Changed default web server from thin to puma
+  * Used #compose_command to support shell setup commands
+
 ## Version 0.2.1 (Aug 05, 2016)
 
 Bug fixes:
