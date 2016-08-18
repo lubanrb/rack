@@ -9,7 +9,7 @@ module Luban
 
           DefaultPort = 3000
           DefaultVirtualHost = 'localhost'
-          DefaultWebServer = :thin
+          DefaultWebServer = :puma
 
           parameter :port
           parameter :virtual_host
