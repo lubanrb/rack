@@ -61,11 +61,11 @@ module Luban
               end
 
               def start_command
-                @start_command ||= "cd #{release_path}; #{puma_command} start"
+                @start_command ||= "#{puma_command} start"
               end
 
               def stop_command
-                @stop_command ||= "cd #{release_path}; #{puma_command} stop"
+                @stop_command ||= "#{puma_command} stop"
               end
 
               def process_pattern
@@ -143,11 +143,11 @@ module Luban
             include Common
 
             def restart_command
-              @restart_command ||= "cd #{release_path}; #{puma_command} restart"
+              @restart_command ||= "#{puma_command} restart"
             end
 
             def phased_restart_command
-              @phased_restart_command ||= "cd #{release_path}; #{puma_command} phased-restart"
+              @phased_restart_command ||= "#{puma_command} phased-restart"
             end
           end
         end

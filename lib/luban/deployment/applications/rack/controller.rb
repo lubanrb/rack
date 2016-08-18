@@ -38,11 +38,11 @@ module Luban
           end
 
           def restart_process!
-            capture("#{restart_command} 2>&1")
+            capture(compose_command(restart_command))
           end
 
           def phased_restart_process!
-            capture("#{phased_restart_command} 2>&1")
+            capture(compose_command(phased_restart_command))
           end
         end
       end
