@@ -1,10 +1,17 @@
 # Change log
 
+## Version 0.2.3 (Aug 22, 2016)
+
+Minor enhancements:
+  * Linked control file from app profile to the app config directory
+    * As a result, updated gem dependency on Luban to version 0.7.1
+
 ## Version 0.2.2 (Aug 18, 2016)
 
 Minor enhancments:
   * Changed default web server from thin to puma
-  * Used #compose_command to support shell setup commands
+  * Used #compose_command from Luban to support shell setup commands
+    * As a result, updated gem dependency on Luban to version 0.7.0
 
 ## Version 0.2.1 (Aug 05, 2016)
 
