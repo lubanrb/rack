@@ -36,8 +36,6 @@ module Luban
 
         def set_default_application_parameters
           super
-          linked_dirs.push('sockets')
-          linked_files.push('puma.rb', 'thin.yml')
           set_default_rack_parameters
         end
 
