@@ -1,5 +1,11 @@
 # Change log
 
+## Version 0.2.4 (Aug 30, 2016)
+
+Minor enhancements: 
+  * Changed linked_dirs/linked_files setup to Publisher
+    * As a result, bump up the gem dependency of Luban to version 0.7.5
+
 ## Version 0.2.3 (Aug 22, 2016)
 
 Minor enhancements:
