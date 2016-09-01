@@ -38,14 +38,6 @@ module Luban
           def public_files_path
             @public_files_path ||= release_path.join('public')
           end
-
-          def ruby_bin_path
-            @ruby_bin_path ||= package_bin_path('ruby')
-          end
-
-          def bundle_executable
-            @bundle_executable ||= ruby_bin_path.join('bundle')
-          end
         end
       end
     end
