@@ -1,5 +1,12 @@
 # Change log
 
+## Version 0.2.5 (Sept 01, 2016)
+
+Minor enhancements:
+  * Added bundle exec to the shell command prefix if gemfile is found
+  * Bump up gem dependency of Luban to version 0.7.11
+  * Minor code cleanup
+
 ## Version 0.2.4 (Aug 30, 2016)
 
 Minor enhancements: 
