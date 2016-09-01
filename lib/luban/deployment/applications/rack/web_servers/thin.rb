@@ -114,7 +114,7 @@ module Luban
               def unix_socket?; @unix_socket; end
 
               def thin_command
-                @thin_command ||= "#{bundle_executable} exec thin -C #{control_file_path}"
+                @thin_command ||= "thin -C #{control_file_path}"
               end
 
               def start_command

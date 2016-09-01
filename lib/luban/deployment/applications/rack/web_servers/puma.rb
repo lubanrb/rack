@@ -57,7 +57,7 @@ module Luban
               end
 
               def puma_command
-                @puma_command ||= "#{bundle_executable} exec pumactl -F #{control_file_path}"
+                @puma_command ||= "pumactl -F #{control_file_path}"
               end
 
               def start_command

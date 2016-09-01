@@ -19,6 +19,14 @@ module Luban
 
           def current_web_server; web_server[:name]; end
 
+          def shell_command_prefix
+            @shell_command_prefix ||= if has_gemfile?
+                                        super << "#{bundle_executable} exec"
+                                      else
+                                        super
+                                      end
+          end
+
           protected
 
           def init
