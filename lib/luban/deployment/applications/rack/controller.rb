@@ -3,6 +3,7 @@ module Luban
     module Applications
       class Rack
         class Controller < Luban::Deployment::Application::Controller
+          include Common
           include Paths
           include Parameters
           include WebServer

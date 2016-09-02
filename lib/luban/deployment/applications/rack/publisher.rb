@@ -3,6 +3,8 @@ module Luban
     module Applications
       class Rack
         class Publisher < Luban::Deployment::Application::Publisher
+          include Common
+          
           protected
 
           def init
