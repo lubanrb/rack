@@ -7,7 +7,7 @@ module Luban
         module Common
           def shell_command_prefix
             @shell_command_prefix ||= 
-              has_gemfile? ? super << "#{bundle_executable} exec" : super
+              has_gemfile? ? (super << "#{bundle_executable} exec") : super
           end
         end
 
