@@ -1,5 +1,11 @@
 # Change log
 
+## Version 0.2.6 (Sept 04, 2016)
+
+Bug fixes:
+  * Overloaded #shell_command_prefix method in all worker classes
+  * 
+
 ## Version 0.2.5 (Sept 01, 2016)
 
 Minor enhancements:
