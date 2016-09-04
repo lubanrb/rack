@@ -4,7 +4,7 @@
 
 Bug fixes:
   * Overloaded #shell_command_prefix method in all worker classes
-  * 
+  * Minor bug fixes
 
 ## Version 0.2.5 (Sept 01, 2016)
 
