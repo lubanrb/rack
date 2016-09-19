@@ -6,8 +6,8 @@ check process <%= service_entry %>.<%= current_web_server %>.<%= n %>
   with pidfile <%= pid_file_path(n) %>
   group <%= service_entry %>
   onreboot laststate
-  start program = "/bin/bash -c 'sleep 1; <%= compose_command(start_command) %> -o <%=n %>'"
-  stop program = "/bin/bash -c '<%= compose_command(stop_command) %> -o <%=n %>'"
+  start program = "/bin/bash -c 'sleep 1; <%= start_command %> -o <%=n %>'"
+  stop program = "/bin/bash -c '<%= stop_command %> -o <%=n %>'"
   if totalmem is greater than 150.0 MB for 40 cycles then alert
   <%- if tcp_socket? -%>
   if failed port <%= opts[:port] + n %> for 4 times within 8 cycles then restart

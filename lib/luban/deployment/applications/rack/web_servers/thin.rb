@@ -118,11 +118,11 @@ module Luban
               end
 
               def start_command
-                @start_command ||= "#{thin_command} start"
+                @start_command ||= bundle_command("#{thin_command} start")
               end
 
               def stop_command
-                @stop_command ||= "#{thin_command} stop"
+                @stop_command ||= bundle_command("#{thin_command} stop")
               end
 
               def process_pattern
@@ -148,11 +148,11 @@ module Luban
             include Common
 
             def restart_command
-              @restart_command ||= "#{thin_command} restart"
+              @restart_command ||= bundle_command("#{thin_command} restart")
             end
 
             def phased_restart_command
-              @phased_restart_command ||= "#{thin_command} restart --onebyone"
+              @phased_restart_command ||= bundle_command("#{thin_command} restart --onebyone")
             end
           end
         end

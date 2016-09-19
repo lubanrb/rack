@@ -3,7 +3,6 @@ module Luban
     module Applications
       class Rack
         class Controller < Luban::Deployment::Application::Controller
-          include Common
           include Paths
           include Parameters
           include WebServer
@@ -38,13 +37,8 @@ module Luban
             set_web_server_options
           end
 
-          def restart_process!
-            capture(compose_command(restart_command))
-          end
-
-          def phased_restart_process!
-            capture(compose_command(phased_restart_command))
-          end
+          def restart_process!; capture(restart_command); end
+          def phased_restart_process!; capture(phased_restart_command); end
         end
       end
     end

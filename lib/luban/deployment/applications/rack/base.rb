@@ -4,13 +4,6 @@ module Luban
       class Rack < Luban::Deployment::Application
         using Luban::CLI::CoreRefinements
 
-        module Common
-          def shell_command_prefix
-            @shell_command_prefix ||= 
-              has_gemfile? ? (super << "#{bundle_executable} exec") : super
-          end
-        end
-
         module Parameters
           extend Luban::Deployment::Parameters::Base  
 
