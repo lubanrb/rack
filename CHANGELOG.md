@@ -1,5 +1,10 @@
 # Change log
 
+## Version 0.2.8 (Sept 20, 2016)
+
+Bug fixes:
+  * Fixed a bug in the init chain for Rack::Controller
+
 ## Version 0.2.7 (Sept 19, 2016)
 
 Minor enhancements:
