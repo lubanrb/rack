@@ -22,6 +22,7 @@ module Luban
           protected
 
           def init
+            super
             load_web_server
           end
 
