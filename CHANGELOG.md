@@ -1,5 +1,13 @@
 # Change log
 
+## Version 0.2.9 (Sept 21, 2016)
+
+Bug fixes:
+  * Changed default server address to 127.0.0.1 for both Thin and Puma
+  * Changed Puma default port next to the web server port
+  * Passed the right arguments to monitor_command/unmonitor_command
+  * Checked if process is monitorable before enable/disable process monitoring
+
 ## Version 0.2.8 (Sept 20, 2016)
 
 Bug fixes:
