@@ -6,7 +6,7 @@ upstream <%= service_entry %> {
     # to return a good HTTP response 
 
     <%- if tcp_socket? -%>
-    server <%= opts[:address] %>:<%= opts[:port] %> fail_timeout=0;
+    server <%= "127.0.0.1" %>:<%= port + 1 %> fail_timeout=0;
     <%- end -%>
     <%- if unix_socket? -%>
     server unix:<%= socket_file_path %> fail_timeout=0;

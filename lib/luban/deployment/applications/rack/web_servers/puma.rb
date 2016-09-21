@@ -8,8 +8,8 @@ module Luban
              def default_web_server_options
                 @default_web_server_options ||= {
                   # Server options
-                  address: "0.0.0.0",
-                  port: port,
+                  address: "127.0.0.1",
+                  port: port + 1,
                   socket: socket_file_path.to_s,
                   directory: release_path.to_s,
                   environment: stage,

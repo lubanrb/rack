@@ -34,11 +34,11 @@ module Luban
                 rm(pid_files_path) if pid_file_orphaned?
               end
 
-              def monitor_command
+              def monitor_command(service_entry)
                 @monitor_command ||= "#{monitor_executable} monitor -g #{service_entry}"
               end
 
-              def unmonitor_command
+              def unmonitor_command(service_entry)
                 @unmonitor_command ||= "#{monitor_executable} unmonitor -g #{service_entry}"
               end
             end
@@ -88,7 +88,7 @@ module Luban
               def default_web_server_options
                 @default_web_server_options ||= {
                   # Server options
-                  address: "0.0.0.0",
+                  address: "127.0.0.1",
                   port: port + 1,
                   socket: socket_file_path.to_s,
                   chdir: release_path.to_s,
