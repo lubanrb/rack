@@ -1,5 +1,11 @@
 # Change log
 
+## Version 0.2.10 (Sept 27, 2016)
+
+Bug fixes:
+  * Renamed #process_monitorable? to #monitorable? due to the change from Luban
+    * As a result, bump up the gem dependency of Luban to version 0.8.7
+
 ## Version 0.2.9 (Sept 21, 2016)
 
 Bug fixes:
