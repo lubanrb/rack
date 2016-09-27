@@ -13,12 +13,12 @@ module Luban
               return
             end
 
-            unmonitor_process if process_monitorable?
+            unmonitor_process if monitorable?
             output = (phased ? phased_restart_process! : restart_process!) || 'OK'
 
             if check_until { process_started? }
               update_result "Restart #{service_full_name}: [OK] #{output}"
-              monitor_process if process_monitorable?
+              monitor_process if monitorable?
             else
               remove_orphaned_pid_file
               update_result "Restart #{service_full_name}: [FAILED] #{output}",
