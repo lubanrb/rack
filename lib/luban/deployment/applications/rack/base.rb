@@ -46,9 +46,11 @@ module Luban
         def setup_control_tasks
           super
 
-          task :phased_restart do
-            desc "Phased restart process"
-            action! :phased_restart_process
+          commands[:control].alter do
+            task :phased_restart do
+              desc "Phased restart process"
+              action! :phased_restart_process
+            end
           end
         end
       end
