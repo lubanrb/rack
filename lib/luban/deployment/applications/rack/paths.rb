@@ -19,10 +19,6 @@ module Luban
             @control_file_extname ||= "rb"
           end
 
-          def logrotate_file_name
-            @logrotate_file_name ||= "#{current_web_server}.logrotate"
-          end
-
           def socket_file_path
             @socket_file_path ||= sockets_path.join(socket_file_name)
           end
