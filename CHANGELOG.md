@@ -1,5 +1,15 @@
 # Change log
 
+## Version 0.2.12 (Oct 12, 2016)
+
+Minor enhancements:
+  * Updated logrotate configuration
+  * Deprecated logrotate related paths because logrotate is managed in Uber
+    * As a result, bump up gem dependency of Luban to version 0.9.0
+
+Bug fixes:
+  * Checked excluded templates from super in Configurator
+
 ## Version 0.2.11 (Sept 28, 2016)
 
 Minor enhancements:
