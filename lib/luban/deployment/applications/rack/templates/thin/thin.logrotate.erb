@@ -1,12 +1,16 @@
 # Thin logrotate configuration
 
 <%= log_path.join('thin.*.log') %> {
-  daily
+  hourly
+  maxsize 5M
+  maxage 14
+  rotate <%= 14 * 24 * (60 / 10) %>
   missingok
-  rotate 14
   compress
+  compresscmd <%= `which gzip`.chomp %>
   dateext
-  notifempty
+  dateformat -%Y%m%d-%H%M%S
+  olddir archived_logs
   sharedscripts
   postrotate
     pgrep -f "<%= process_pattern %>" >/dev/null 2>&1 || pkill -USR1 -f "<%= process_pattern %>" >/dev/null 2>&1 || true
