@@ -4,7 +4,6 @@ module Luban
       class Rack
         class Configurator < Luban::Deployment::Application::Configurator
           include Paths
-          include Parameters
           include WebServer
 
           def exclude_template?(template)

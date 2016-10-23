@@ -2,42 +2,21 @@ module Luban
   module Deployment
     module Applications
       class Rack < Luban::Deployment::Application
-        using Luban::CLI::CoreRefinements
+        DefaultPort = 3000
+        DefaultVirtualHost = 'localhost'
+        DefaultWebServer = :puma
 
-        module Parameters
-          extend Luban::Deployment::Parameters::Base  
+        parameter :port, default: DefaultPort
+        parameter :virtual_host, default: DefaultVirtualHost
+        parameter :web_server, default: DefaultWebServer
 
-          DefaultPort = 3000
-          DefaultVirtualHost = 'localhost'
-          DefaultWebServer = :puma
-
-          parameter :port
-          parameter :virtual_host
-          parameter :web_server
-
-          def power_by(server, **opts)
-            web_server name: server, opts: opts
-          end
-
-          protected
-
-          def set_default_rack_parameters
-            set_default :port, DefaultPort
-            set_default :virtual_host, DefaultVirtualHost
-            set_default :web_server, name: DefaultWebServer, opts: {}
-          end
+        def power_by(server, **opts)
+          web_server name: server, opts: opts
         end
-
-        include Parameters
 
         application_action "phased_restart_process", dispatch_to: :controller
 
         protected
-
-        def set_default_application_parameters
-          super
-          set_default_rack_parameters
-        end
 
         def include_default_templates_path
           default_templates_paths.unshift(base_templates_path(__FILE__).join(web_server[:name].to_s))

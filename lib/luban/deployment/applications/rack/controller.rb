@@ -4,7 +4,6 @@ module Luban
       class Rack
         class Controller < Luban::Deployment::Application::Controller
           include Paths
-          include Parameters
           include WebServer
 
           def restart_process(phased: false)
