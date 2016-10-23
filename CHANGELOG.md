@@ -1,5 +1,11 @@
 # Change log
 
+## Version 0.2.14 (Oct 23, 2016)
+
+Minor enhancements:
+  * Cleaned up the design and implementation of Rack app parameters in a deployment project
+    * As a result, bump up gem dependency on Luban to version 0.9.10
+
 ## Version 0.2.13 (Oct 19, 2016)
 
 Minor enhancements:
