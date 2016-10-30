@@ -1,5 +1,10 @@
 # Change log
 
+## Version 0.2.15 (Oct 30, 2016)
+
+Bug fixes:
+  * Correctly set the default value for #web_server
+
 ## Version 0.2.14 (Oct 23, 2016)
 
 Minor enhancements:
