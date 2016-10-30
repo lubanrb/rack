@@ -8,7 +8,7 @@ module Luban
 
         parameter :port, default: DefaultPort
         parameter :virtual_host, default: DefaultVirtualHost
-        parameter :web_server, default: DefaultWebServer
+        parameter :web_server, default: ->{ { name: DefaultWebServer, opts: {} } }
 
         def power_by(server, **opts)
           web_server name: server, opts: opts
