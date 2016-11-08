@@ -11,7 +11,8 @@ module Luban
                   address: "127.0.0.1",
                   port: port + 1,
                   socket: socket_file_path.to_s,
-                  directory: release_path.to_s,
+                  #directory: release_path.to_s,
+                  directory: current_app_path.to_s,
                   environment: stage,
                   # Daemon options
                   daemonize: true,
