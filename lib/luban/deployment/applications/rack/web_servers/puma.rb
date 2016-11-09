@@ -25,7 +25,7 @@ module Luban
                   tag: "#{env_name}:#{release_tag}",
                   # Cluster options
                   servers: 2,
-                  threads: "5:5",
+                  threads: "1:1",
                   preload: false,
                   prune_bundler: true,
                   # Control app options
