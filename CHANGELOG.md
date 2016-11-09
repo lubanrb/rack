@@ -1,5 +1,12 @@
 # Change log
 
+## Version 0.2.16 (Nov 09, 2016)
+
+Bug fixes:
+  * Used current app path instead of release path to walk around Puma restart_dir issue
+  * Changed default threads for Puma to "1:1" to ensure single thread
+    * Developers need to ensure their app is thread-safe before turning up this setting
+
 ## Version 0.2.15 (Oct 30, 2016)
 
 Bug fixes:
