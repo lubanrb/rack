@@ -11,8 +11,7 @@ module Luban
                   address: "127.0.0.1",
                   port: port + 1,
                   socket: socket_file_path.to_s,
-                  #directory: release_path.to_s,
-                  directory: current_app_path.to_s,
+                  directory: release_path.to_s,
                   environment: stage,
                   # Daemon options
                   daemonize: true,
@@ -30,7 +29,7 @@ module Luban
                   prune_bundler: true,
                   # Control app options
                   control_socket: control_socket_file_path.to_s,
-                  control_opts: { authen_tocken: port.to_s }
+                  control_opts: { auth_token: port.to_s }
                 }
               end
 
@@ -149,6 +148,24 @@ module Luban
 
             def phased_restart_command
               @phased_restart_command ||= bundle_command("#{puma_command} phased-restart")
+            end
+
+            def publish_web_server
+              install_puma_plugins if publish_app?
+            end
+
+            protected
+
+            def install_puma_plugins
+              src_plugin_path = Pathname.new(__FILE__).dirname.join('puma', 'plugin')
+              dst_plugin_path = within(release_path) do
+                                  Pathname.new(capture(bundle_executable, :show, 'puma'))
+                                end.join('lib', 'puma', 'plugin')
+              Pathname.glob(src_plugin_path.join('*.rb')).each do |src_plugin|
+                dst_plugin = dst_plugin_path.join(src_plugin.basename)
+                upload_by_template(file_to_upload: dst_plugin, template_file: src_plugin,
+                                   auto_revision: true)
+              end
             end
           end
         end
