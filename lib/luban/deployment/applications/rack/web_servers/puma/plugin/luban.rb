@@ -16,7 +16,9 @@ Puma::Plugin.create do
       @options.instance_variable_set(:@cur, init_options)
       @options.instance_variable_set(:@set, [init_options])
       @config.load
-      @restart_dir = dir if dir = @options[:directory]
+      if dir = @options[:directory]
+        @restart_dir = dir
+      end
       set_process_title
       super()
     end
