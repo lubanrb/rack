@@ -19,6 +19,8 @@ module Luban
 
           def current_web_server; web_server[:name]; end
 
+          def publish_web_server; end
+
           protected
 
           def init
