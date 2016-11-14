@@ -1,6 +1,6 @@
 # Change log
 
-## Version 0.2.17 (Nov 14, 2016)
+## Version 0.2.18 (Nov 14, 2016)
 
 Minor enhancements:
   * Added publish callback for web server
