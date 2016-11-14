@@ -1,5 +1,13 @@
 # Change log
 
+## Version 0.2.17 (Nov 14, 2016)
+
+Minor enhancements:
+  * Added publish callback for web server
+  * Added Puma plugin for Luban integration to
+    * Solved process tag unchanged during phase restart
+    * Loaded app from releast path directly instead of current_app_path 
+
 ## Version 0.2.16 (Nov 09, 2016)
 
 Bug fixes:
