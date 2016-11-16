@@ -1,5 +1,11 @@
 # Change log
 
+## Version 0.2.19 (Nov 16 2016)
+
+Bug fixes:
+  * Updated plugin 'luban' to be backward compatible with Ruby 1.8
+  * Monkey patched on class Puma::Plugin to ensure backward compatibility with Ruby 1.8
+
 ## Version 0.2.18 (Nov 14, 2016)
 
 Minor enhancements:
