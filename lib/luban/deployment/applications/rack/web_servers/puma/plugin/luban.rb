@@ -12,10 +12,6 @@ end
 if RUBY_VERSION =~ /^1\.8/
   # Monkey patched to ensure backward compatibility with Ruby 1.8
   class Puma::Plugin
-    # Matches
-    #  "C:/Ruby22/lib/ruby/gems/2.2.0/gems/puma-3.0.1/lib/puma/plugin/tmp_restart.rb:3:in `<top (required)>'"
-    #  AS
-    #  C:/Ruby22/lib/ruby/gems/2.2.0/gems/puma-3.0.1/lib/puma/plugin/tmp_restart.rb
     CALLER_FILE = /
       \A       # start of string
       .+       # file path (one or more characters)
