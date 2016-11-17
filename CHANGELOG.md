@@ -1,5 +1,10 @@
 # Change log
 
+## Version 0.2.20 (Nov 17 2016)
+
+Bug fixes:
+  * Fixed Nginx proxy configuration for Rails precompiled assets serving
+
 ## Version 0.2.19 (Nov 16 2016)
 
 Bug fixes:
