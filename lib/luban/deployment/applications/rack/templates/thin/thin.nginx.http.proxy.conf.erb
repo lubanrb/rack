@@ -29,7 +29,7 @@ server {
     # path for static files
     root <%= public_files_path %>;
 
-    location ~ ^/assets/ {
+    location ~ ^/assets/(.*)$ {
         gzip_static on; # to serve pre-gizpped version
         expires 1y;
         add_header Cache-Control public;
