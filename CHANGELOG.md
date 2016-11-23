@@ -1,11 +1,19 @@
 # Change log
 
-## Version 0.2.20 (Nov 17 2016)
+## Versoin 0.2.21 (Nov 24, 2016)
+
+Minor enhancements:
+  * Made use of linked_files convention
+    * Relocated puma.rb.erb to templates/puma/config
+    * Relocated thin.yml.erb to templates/thin/config
+    * As a result, bump up gem dependency of Luban to version 0.10.4
+
+## Version 0.2.20 (Nov 17, 2016)
 
 Bug fixes:
   * Fixed Nginx proxy configuration for Rails precompiled assets serving
 
-## Version 0.2.19 (Nov 16 2016)
+## Version 0.2.19 (Nov 16, 2016)
 
 Bug fixes:
   * Updated plugin 'luban' to be backward compatible with Ruby 1.8
