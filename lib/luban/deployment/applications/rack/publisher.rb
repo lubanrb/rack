@@ -15,7 +15,6 @@ module Luban
           def init
             super
             linked_dirs.push('sockets')
-            linked_files.push('puma.rb', 'thin.yml')
           end
         end
       end
