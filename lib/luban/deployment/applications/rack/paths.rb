@@ -11,6 +11,8 @@ module Luban
             @pid_file_name ||= "#{current_web_server}.pid"
           end
 
+          def control_file_dir; @control_file_dir ||= "config"; end
+
           def control_file_name
             @control_file_name ||= "#{current_web_server}.#{control_file_extname}"
           end
