@@ -1,9 +1,7 @@
 module Luban
   module Deployment
     module Applications
-      class Rack
-        VERSION = '0.2.21'
-      end
+      RACK_VERSION = '0.2.22'
     end
   end
 end
