@@ -1,5 +1,15 @@
 # Change log
 
+## Version 0.2.22 (Nov 26, 2016)
+
+Minor enhancements:
+  * Specified control_file_dir to properly handle linked files
+  * Bump up gem dependency of Luban to version 0.10.8
+
+Bug fixes:
+  * Fixed superclass mismatch exception when loading gem from filesystem directly
+
+
 ## Versoin 0.2.21 (Nov 24, 2016)
 
 Minor enhancements:
