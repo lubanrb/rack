@@ -5,7 +5,7 @@ require 'luban/deployment/applications/rack/version'
 
 Gem::Specification.new do |spec|
   spec.name          = "luban-rack"
-  spec.version       = Luban::Deployment::Applications::Rack::VERSION
+  spec.version       = Luban::Deployment::Applications::RACK_VERSION
   spec.authors       = ["Rubyist Chi"]
   spec.email         = ["rubyist.chi@gmail.com"]
 
@@ -18,7 +18,7 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   spec.required_ruby_version = ">= 2.1.0"
-  spec.add_dependency 'luban', ">= 0.10.4"
+  spec.add_dependency 'luban', ">= 0.10.8"
 
   spec.add_development_dependency "bundler", "~> 1.12"
   spec.add_development_dependency "rake", "~> 10.0"
