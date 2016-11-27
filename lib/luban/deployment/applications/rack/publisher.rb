@@ -3,6 +3,7 @@ module Luban
     module Applications
       class Rack
         class Publisher < Luban::Deployment::Application::Publisher
+          include Paths
           include WebServer
 
           def after_publish
