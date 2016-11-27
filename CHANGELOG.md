@@ -1,6 +1,6 @@
 # Change log
 
-## Version 0.2.22 (Nov 26, 2016)
+## Version 0.2.23 (Nov 27, 2016)
 
 Minor enhancements:
   * Specified control_file_dir to properly handle linked files
@@ -8,6 +8,7 @@ Minor enhancements:
 
 Bug fixes:
   * Fixed superclass mismatch exception when loading gem from filesystem directly
+  * Properly included common paths for Publisher
 
 
 ## Versoin 0.2.21 (Nov 24, 2016)
