@@ -1,5 +1,10 @@
 # Change log
 
+## Version 0.2.24 (Jan 03, 2016)
+
+Minor enhancements:
+  * Cleaned up Bundler environment for control actions and web server publishing
+
 ## Version 0.2.23 (Nov 27, 2016)
 
 Minor enhancements:
