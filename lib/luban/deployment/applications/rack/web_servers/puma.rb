@@ -151,7 +151,7 @@ module Luban
             end
 
             def publish_web_server
-              install_puma_plugins if publish_app?
+              with_clean_env { install_puma_plugins } if publish_app?
             end
 
             protected

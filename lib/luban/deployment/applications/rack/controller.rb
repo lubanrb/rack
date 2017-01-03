@@ -36,8 +36,8 @@ module Luban
             set_web_server_options
           end
 
-          def restart_process!; capture(restart_command); end
-          def phased_restart_process!; capture(phased_restart_command); end
+          def restart_process!; with_clean_env { capture(restart_command) }; end
+          def phased_restart_process!; with_clean_env { capture(phased_restart_command) }; end
         end
       end
     end
