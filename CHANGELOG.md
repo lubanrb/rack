@@ -1,5 +1,12 @@
 # Change log
 
+## Version 0.2.25 (Feb 23, 2016)
+
+Minor enhancements:
+  * Bump up gem dependency of Luban to version 0.12.8
+    * To make use of an enhancement of cleaning up Bundler environment before executing any worker tasks
+    * So that code can be cleaned up in a more concise way
+
 ## Version 0.2.24 (Jan 03, 2016)
 
 Minor enhancements:
