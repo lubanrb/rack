@@ -7,7 +7,7 @@ module Luban
           include WebServer
 
           def exclude_template?(template)
-            super or web_servers_unused.any? { |w| template =~ /^#{w}\./ }
+            super or web_servers_unused.any? { |w| File.basename(template) =~ /^#{w}\./ }
           end
 
           protected
