@@ -1,5 +1,11 @@
 # Change log
 
+## Version 0.3.0 (Mar 28, 2017)
+  * Set up Puma/Thin web server configurations appropriately for dockerization
+
+Bug fixes:
+  * Compared excluded templates with their basename instead of full path
+
 ## Version 0.2.25 (Feb 23, 2017)
 
 Minor enhancements:
