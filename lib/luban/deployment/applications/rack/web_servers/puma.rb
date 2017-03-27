@@ -13,8 +13,9 @@ module Luban
                   socket: socket_file_path.to_s,
                   directory: release_path.to_s,
                   environment: stage,
+                  rackup: release_path.join('config.ru').to_s,
                   # Daemon options
-                  daemonize: true,
+                  daemonize: !dockerized?,
                   pidfile: pid_file_path.to_s,
                   state_path: state_file_path.to_s,
                   redirect_stdout: log_file_path.to_s,
@@ -78,6 +79,10 @@ module Luban
 
               protected
 
+              def init_docker_command
+                docker_command ["bundle", "exec", "puma", "-C", control_file_path.to_s]
+              end
+
               def set_web_server_options
                 super.tap do |opts|
                   [:uri, :stdout_redirect, :workers, :threads, :control, :tuning].each do |param|
@@ -107,7 +112,11 @@ module Luban
               end
 
               def set_workers_options(opts)
-                opts[:workers] = opts.delete(:servers)
+                if dockerized?
+                  opts.delete(:servers)
+                else
+                  opts[:workers] = opts.delete(:servers)
+                end
               end
 
               def set_threads_options(opts)

@@ -94,7 +94,7 @@ module Luban
                   chdir: release_path.to_s,
                   environment: stage,
                   # Daemon options
-                  daemonize: true,
+                  daemonize: !dockerized?,
                   log: log_file_path.to_s,
                   pid: pid_file_path.to_s,
                   tag: "#{env_name}:#{release_tag}",
@@ -131,6 +131,10 @@ module Luban
 
               protected
 
+              def init_docker_command
+                docker_command ["bundle", "exec", "thin", "start", "-C", control_file_path.to_s]
+              end
+
               def set_web_server_options
                 super.tap do |opts|
                   @unix_socket = !!opts.delete(:unix_socket)
@@ -140,6 +144,10 @@ module Luban
                     opts.delete(:port)
                   else
                     opts.delete(:socket)
+                  end
+                  if dockerized?
+                    opts.delete(:servers)
+                    opts.delete(:wait)
                   end
                 end
               end

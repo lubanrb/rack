@@ -1,17 +1,18 @@
 # Nginx reverse proxy configuration for Thin
 
 <% opts = web_server[:opts] -%>
+<% servers = opts[:servers] || 1 -%>
 upstream <%= service_entry %> {
     # fail_timeout=0 means we always retry an upstream even if it failed
     # to return a good HTTP response 
 
     <%- if tcp_socket? -%>
-    <%- opts[:servers].times do |n| -%>
+    <%- servers.times do |n| -%>
     server <%= opts[:address] %>:<%= opts[:port] + n %> fail_timeout=0;
     <%- end -%>
     <%- end -%>
     <%- if unix_socket? -%>
-    <%- opts[:servers].times do |n| -%>
+    <%- servers.times do |n| -%>
     server unix:<%= socket_file_path(n) %> fail_timeout=0;
     <%- end -%>
     <%- end -%>

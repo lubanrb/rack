@@ -1,7 +1,7 @@
 # Monit Monit configuration for Thin
 
 <% opts = web_server[:opts] -%>
-<% opts[:servers].times do |n| -%>
+<% (opts[:servers] || 1).times do |n| -%>
 check process <%= service_entry %>.<%= current_web_server %>.<%= n %>
   with pidfile <%= pid_file_path(n) %>
   group <%= service_entry %>
